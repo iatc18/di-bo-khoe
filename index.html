@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#3d2645">
+<title>Đi Bộ Khỏe – Mẹ Phương</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: ấm áp, nhẹ nhàng, như món quà con làm tặng mẹ; chữ to, nút to, ít thao tác.
+   IDEA: cuốn sổ đi bộ buổi sáng: mỗi ngày tô đầy một vòng mặt trời.
+   PICTURE: vòng mặt trời tiến độ hôm nay, lớn ở đầu màn hình Hôm nay.
+   COLOUR and TYPE: tím mận đậm, cam bình minh, vàng nắng; Be Vietnam Pro (font thiết kế cho tiếng Việt).
+   LAYOUT: dải đầu tím mận; điện thoại: thanh 4 thẻ dưới đáy, xếp dọc; máy tính: thẻ trên dải đầu, hai cột. */
+:root{color-scheme:light;--bg:#ffffff;--ink:#2b1f30;--muted:#665869;--plum:#3d2645;--onplum:#fff4ef;--sun:#c2391f;--onsun:#ffffff;--sunsoft:#fdeee8;--gold:#f0a23b;--card:#ffffff;--line:#eadde2;--track:#f4e8eb;--warnbg:#fff4e2;--dangerbg:#fdecea;--danger:#a8231b}
+:root[data-theme=dark]{color-scheme:dark;--bg:#19121e;--ink:#f5ecef;--muted:#bba9bd;--plum:#2c1d34;--onplum:#fff4ef;--sun:#ff7a55;--onsun:#19121e;--sunsoft:#33212a;--gold:#f6b75a;--card:#221827;--line:#3a2b40;--track:#33263a;--warnbg:#382a18;--dangerbg:#3b1d20;--danger:#ff8f86}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#19121e;--ink:#f5ecef;--muted:#bba9bd;--plum:#2c1d34;--onplum:#fff4ef;--sun:#ff7a55;--onsun:#19121e;--sunsoft:#33212a;--gold:#f6b75a;--card:#221827;--line:#3a2b40;--track:#33263a;--warnbg:#382a18;--dangerbg:#3b1d20;--danger:#ff8f86}}
+*{box-sizing:border-box;min-width:0}
+html{font-size:18px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:clip}
+h1,h2,h3{line-height:1.15;text-wrap:balance;margin:0 0 .5em}
+h2{font-size:clamp(24px,5vw,30px);font-weight:800}
+h3{font-size:21px;font-weight:700}
+p{margin:0 0 .8em}
+button,input,select{font:inherit;color:inherit}
+.top{background:var(--plum);color:var(--onplum)}
+.topin{max-width:1080px;margin:0 auto;padding:18px max(4vw,16px) 16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;flex:1 1 260px}
+.brand svg{flex:none}
+.brand h1{font-size:clamp(26px,5.4vw,34px);font-weight:800;margin:0}
+.brand p{margin:2px 0 0;font-size:15px;opacity:.85}
+.tabs{display:flex;gap:6px}
+.tab{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--onplum);font-weight:600;font-size:17px;cursor:pointer}
+.tab svg{width:22px;height:22px;flex:none}
+.tab[aria-current=page]{background:var(--onplum);color:var(--plum)}
+.tab:focus-visible,.btn:focus-visible,.col:focus-visible,.dot:focus-visible,.seg input:focus-visible+span,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main{max-width:1080px;margin:0 auto;padding:20px max(4vw,16px) 8px}
+.view{display:none}.view.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,26px);margin-bottom:16px}
+.hero{display:grid;gap:16px;grid-template-columns:minmax(0,1fr);margin-bottom:0}
+.ringcard{text-align:center;background:var(--sunsoft);border-color:transparent}
+.hello{font-size:20px;font-weight:700;margin-bottom:6px}
+.ring{position:relative;width:min(76vw,300px);aspect-ratio:1;margin:4px auto 10px}
+.ring svg{width:100%;height:100%;display:block}
+.rtrack{fill:none;stroke:var(--card);stroke-width:18}
+.rprog{fill:none;stroke:var(--sun);stroke-width:18;stroke-linecap:round;transition:stroke-dashoffset .9s ease}
+.ray{stroke:var(--line);stroke-width:5;stroke-linecap:round}
+.ray.lit{stroke:var(--gold)}
+.ringtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ringtxt strong{font-size:clamp(40px,11vw,52px);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.ringtxt span{font-size:16px;color:var(--muted);white-space:nowrap}
+.ringtxt em{font-style:normal;font-weight:700;color:var(--sun);font-size:18px;margin-top:2px}
+.cheer{font-size:19px;font-weight:600;max-width:34ch;margin:0 auto 12px}
+.mini{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.chip{background:var(--card);border-radius:999px;padding:6px 14px;font-size:16px;white-space:nowrap}
+.chip b{font-variant-numeric:tabular-nums}
+label.f{display:block;font-weight:600;margin:0 0 14px}
+label.f small{font-weight:400;color:var(--muted)}
+.inp{display:block;width:100%;min-height:54px;margin-top:6px;padding:0 14px;border:2px solid var(--line);border-radius:14px;background:var(--bg);font-size:20px}
+.inp:focus{border-color:var(--sun)}
+.hint{font-size:16px;color:var(--muted)}
+fieldset{border:0;padding:0;margin:0 0 16px}
+legend{font-weight:600;padding:0;margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{flex:1 1 0;min-width:96px;position:relative}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:54px;padding:6px 10px;border:2px solid var(--line);border-radius:14px;font-weight:600;cursor:pointer;background:var(--bg)}
+.seg input:checked+span{border-color:var(--sun);background:var(--sunsoft);color:var(--sun)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 24px;border:0;border-radius:16px;background:var(--sun);color:var(--onsun);font-weight:700;font-size:19px;cursor:pointer;text-decoration:none}
+.btn.full{width:100%}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.small{min-height:48px;font-size:17px;padding:0 16px}
+.btn.danger{background:var(--danger);color:#fff}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.msg{min-height:1.5em;font-weight:600;color:var(--sun);margin:10px 0 0}
+.week{display:flex;justify-content:space-between;gap:6px;margin:12px 0 8px}
+.dot{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:4px 0;cursor:pointer;color:var(--ink)}
+.dot i{width:min(11vw,46px);aspect-ratio:1;border-radius:50%;border:3px solid var(--line);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px;font-weight:700}
+.dot.done i{background:var(--sun);border-color:var(--sun);color:var(--onsun)}
+.dot.part i{border-color:var(--sun)}
+.dot.today i{box-shadow:0 0 0 3px var(--gold)}
+.dot.future{opacity:.45}
+.dot span{font-size:15px;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0 18px}
+.stat{background:var(--sunsoft);border-radius:16px;padding:12px 14px}
+.stat span{display:block;font-size:15px;color:var(--muted)}
+.stat b{display:block;font-size:clamp(22px,5vw,28px);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat small{display:block;font-size:14px;color:var(--muted)}
+.sumhead{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.pager{display:flex;align-items:center;gap:8px}
+.pager b{min-width:9em;text-align:center;font-size:18px}
+.pg{width:48px;height:48px;border-radius:50%;border:2px solid var(--line);background:var(--bg);font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pg:disabled{opacity:.35;cursor:default}
+.seg2{display:flex;background:var(--track);border-radius:999px;padding:4px}
+.seg2 button{min-height:46px;padding:0 20px;border:0;border-radius:999px;background:transparent;font-weight:700;cursor:pointer}
+.seg2 button[aria-pressed=true]{background:var(--card);color:var(--sun);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.chart{display:flex;align-items:flex-end;gap:clamp(4px,1.6vw,14px);height:250px;padding-top:6px}
+.col{flex:1 1 0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;background:none;border:0;padding:0;color:var(--ink);font:inherit}
+button.col{cursor:pointer}
+.cv{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.trk{position:relative;flex:1;width:100%;max-width:56px;background:var(--track);border-radius:12px;overflow:hidden}
+.bar{position:absolute;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--sun) 45%,var(--track));border-radius:12px 12px 0 0;transition:height .6s ease}
+.col.ok .bar{background:var(--sun)}
+.gl{position:absolute;left:0;right:0;border-top:3px dashed var(--plum)}
+:root[data-theme=dark] .gl{border-top-color:var(--gold)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .gl{border-top-color:var(--gold)}}
+.cl{font-size:14px;font-weight:600;white-space:nowrap;color:var(--muted)}
+.col.cur .cl{color:var(--sun)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:15px;color:var(--muted);margin-top:12px}
+.legend i{display:inline-block;width:16px;height:16px;border-radius:4px;vertical-align:-2px;margin-right:6px;background:var(--sun)}
+.legend i.g{background:none;border-top:3px dashed var(--plum);height:0;border-radius:0;vertical-align:4px}
+table{width:100%;border-collapse:collapse;font-size:17px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+th{font-size:15px;color:var(--muted);font-weight:600}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}td.n{white-space:nowrap}
+tr.cur td{background:var(--sunsoft);font-weight:700}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:15px;font-weight:700;background:var(--track);white-space:nowrap}
+.tag.ok{background:var(--sun);color:var(--onsun)}
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0 4px}
+.now{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:10px 0 14px}
+.tip{background:var(--warnbg);border-radius:14px;padding:12px 16px;margin:0}
+.safety{background:var(--dangerbg);border-color:transparent}
+.safety h3{color:var(--danger)}
+.safety ul{margin:0;padding-left:1.2em}
+.safety li{margin-bottom:4px}
+.warn{background:var(--warnbg);border-radius:14px;padding:12px 16px;margin:0 0 16px;font-weight:600}
+.note{font-size:15px;color:var(--muted)}
+.bmi{font-size:17px;font-weight:600;color:var(--sun);margin:-6px 0 14px;min-height:1.4em}
+.two{display:grid;gap:0 16px;grid-template-columns:minmax(0,1fr)}
+.empty{display:none}
+.noprof .needs{display:none}.noprof .empty{display:block}
+.err{color:var(--danger);font-weight:700;min-height:1.4em;margin:8px 0 0}
+textarea{width:100%;min-height:120px;font:14px/1.4 ui-monospace,monospace;border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--bg);color:var(--ink)}
+footer{max-width:1080px;margin:0 auto;padding:8px max(4vw,16px) 28px;text-align:center}
+.disc{font-size:15px;color:var(--muted);margin-bottom:6px}
+.gift{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:18px;color:var(--sun);margin:0}
+.scroll{overflow-x:auto}
+@media (min-width:760px){
+ .hero{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start}
+ .two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media (max-width:759px){
+ .tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -2px 12px rgba(0,0,0,.08)}
+ .tab{flex-direction:column;gap:2px;justify-content:center;min-height:66px;padding:6px 2px;border-radius:0;color:var(--muted);font-size:14px}
+ .tab svg{width:26px;height:26px}
+ .tab[aria-current=page]{background:transparent;color:var(--sun)}
+ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+ .topin{padding-top:14px;padding-bottom:14px}
+}
+@media (max-width:600px){
+ table{font-size:16px}
+ th,td{padding:10px 5px}
+ .stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}
+ .stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:9.5em;text-align:start}
+ .stack td::before{content:attr(data-l);float:inline-start;width:9em;margin-inline-start:-9.5em;color:var(--muted);font-size:15px;font-weight:600}
+ .stack td.n{text-align:start}
+ .stack td:empty{display:none}
+}
+@media (prefers-reduced-motion:reduce){.rprog,.bar{transition:none}}
+</style>
+</head>
+<body class="noprof">
+<header class="top">
+ <div class="topin">
+  <div class="brand">
+   <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="25" r="10" fill="#f0a23b"/><g stroke="#f0a23b" stroke-width="3" stroke-linecap="round"><path d="M23 5v5M8.9 10.9l3.5 3.5M37.1 10.9l-3.5 3.5M3 25h5M38 25h5"/></g><path d="M4 40c8-4 13-4 19-1s12 3 19-1" fill="none" stroke="#fff4ef" stroke-width="3" stroke-linecap="round"/></svg>
+   <div><h1>Đi Bộ Khỏe</h1><p>Chương trình đi bộ cho người trên 50 tuổi</p></div>
+  </div>
+  <nav class="tabs" aria-label="Các mục">
+   <button class="tab" data-v="hom-nay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>Hôm nay</button>
+   <button class="tab" data-v="chuong-trinh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9.5h17M8 2.5v4M16 2.5v4M8 14h3M8 17h6"/></svg>Chương trình</button>
+   <button class="tab" data-v="tong-hop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20h16M7 16v-5M12 16V6M17 16v-8"/></svg>Tổng hợp</button>
+   <button class="tab" data-v="ho-so"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4.2 4.2-6 8-6s6.8 1.8 8 6"/></svg>Hồ sơ</button>
+  </nav>
+ </div>
+</header>
+
+<main>
+ <!-- HÔM NAY -->
+ <section class="view" id="v-hom-nay">
+  <div class="card empty">
+   <h2>Chào mừng đến với Đi Bộ Khỏe</h2>
+   <p>Điền 5 thông tin trong Hồ sơ, app sẽ lập chương trình đi bộ 12 tuần phù hợp và giúp theo dõi số bước mỗi ngày.</p>
+   <a class="btn" href="#ho-so">Điền hồ sơ</a>
+  </div>
+  <div class="needs">
+   <div class="hero">
+    <div class="card ringcard">
+     <p class="hello" id="hello">Chào Mẹ</p>
+     <div class="ring">
+      <svg viewBox="0 0 240 240" aria-hidden="true"><g id="rays"></g><circle class="rtrack" cx="120" cy="120" r="88"/><circle class="rprog" id="rprog" cx="120" cy="120" r="88" transform="rotate(-90 120 120)"/></svg>
+      <div class="ringtxt"><strong id="rSteps">0</strong><span id="rGoal">/ 0 bước</span><em id="rPct">0%</em></div>
+     </div>
+     <p class="cheer" id="cheer"></p>
+     <div class="mini"><span class="chip">Quãng đường <b id="rKm">0</b> km</span><span class="chip">Năng lượng <b id="rKcal">0</b> kcal</span><span class="chip" id="rWeek">Tuần 1/12</span></div>
+    </div>
+    <form class="card" id="entry" novalidate>
+     <h2>Ghi số bước</h2>
+     <label class="f">Ngày<input class="inp" type="date" id="eDate"></label>
+     <label class="f">Số bước đã đi<input class="inp" type="number" inputmode="numeric" id="eSteps" min="0" max="60000" step="1" placeholder="Ví dụ: 5200"></label>
+     <p class="hint">Mở ứng dụng đếm bước có sẵn trên điện thoại (Samsung Health, Google Fit hoặc Apple Sức khỏe), xem số bước rồi nhập vào đây.</p>
+     <fieldset><legend>Cảm thấy thế nào?</legend>
+      <div class="seg">
+       <label><input type="radio" name="feel" value="khoe"><span>Khỏe</span></label>
+       <label><input type="radio" name="feel" value="binh"><span>Bình thường</span></label>
+       <label><input type="radio" name="feel" value="met"><span>Mệt</span></label>
+      </div>
+     </fieldset>
+     <div class="row"><button class="btn" type="submit" style="flex:1">Lưu</button><button class="btn ghost small" type="button" id="eDel" hidden>Xóa ngày này</button></div>
+     <p class="msg" id="eMsg" role="status"></p>
+    </form>
+   </div>
+   <div class="card">
+    <h3>Tuần này</h3>
+    <div class="week" id="week"></div>
+    <p id="weekTxt" style="margin:0"></p>
+   </div>
+  </div>
+ </section>
+
+ <!-- CHƯƠNG TRÌNH -->
+ <section class="view" id="v-chuong-trinh">
+  <div class="card empty"><h2>Chưa có chương trình</h2><p>Hãy điền Hồ sơ trước, app sẽ tự lập chương trình.</p><a class="btn" href="#ho-so">Điền hồ sơ</a></div>
+  <div class="needs">
+   <div class="card">
+    <h2 id="pTitle">Chương trình 12 tuần</h2>
+    <p id="pSub" style="margin:0"></p>
+    <div class="keys" id="pKeys"></div>
+    <p class="warn" id="pGentle" hidden></p>
+   </div>
+   <div class="card">
+    <h3 id="nowTitle">Tuần này</h3>
+    <div class="now" id="nowBox"></div>
+    <p class="tip" id="tip"></p>
+   </div>
+   <div class="card">
+    <h3>Lộ trình từng tuần</h3>
+    <div class="scroll"><table id="planTbl"><thead><tr><th>Tuần</th><th class="n">Bước/ngày</th><th class="n">Phút đi bộ</th><th class="n">Ngày tập/tuần</th></tr></thead><tbody></tbody></table></div>
+    <p class="note" style="margin-top:12px">Số bước mỗi ngày tính cả bước đi lại trong nhà. "Đi bộ có chủ đích" là thời gian đi liền mạch với tốc độ vừa sức, có thể chia 2–3 lượt mỗi lượt 10–15 phút. Luôn để ít nhất 1 ngày nghỉ mỗi tuần.</p>
+   </div>
+   <div class="card safety">
+    <h3>Dừng tập và đi khám ngay nếu</h3>
+    <ul>
+     <li>Đau, tức hoặc nặng ngực</li>
+     <li>Khó thở bất thường, thở không ra hơi</li>
+     <li>Chóng mặt, choáng váng, vã mồ hôi lạnh</li>
+     <li>Tim đập nhanh hoặc không đều</li>
+     <li>Đau khớp tăng lên hoặc sưng khớp</li>
+    </ul>
+    <p style="margin:10px 0 0">Người có bệnh tim mạch, huyết áp, tiểu đường hoặc xương khớp nên hỏi ý kiến bác sĩ trước khi bắt đầu.</p>
+   </div>
+   <p class="note">Mục tiêu số bước dựa trên phân tích tổng hợp 15 nghiên cứu (The Lancet Public Health, 2022): lợi ích sức khỏe tăng dần đến khoảng 6.000–8.000 bước/ngày ở người từ 60 tuổi và 8.000–10.000 bước/ngày ở người dưới 60 tuổi. Quãng đường và năng lượng chỉ là ước tính.</p>
+  </div>
+ </section>
+
+ <!-- TỔNG HỢP -->
+ <section class="view" id="v-tong-hop">
+  <div class="card empty"><h2>Chưa có dữ liệu</h2><p>Hãy điền Hồ sơ và ghi số bước mỗi ngày, phần tổng hợp sẽ hiện ở đây.</p><a class="btn" href="#ho-so">Điền hồ sơ</a></div>
+  <div class="needs">
+   <div class="card">
+    <div class="sumhead">
+     <div class="seg2" id="period"><button type="button" data-p="tuan" aria-pressed="true">Tuần</button><button type="button" data-p="thang" aria-pressed="false">Tháng</button></div>
+     <div class="pager"><button class="pg" type="button" id="prev" aria-label="Kỳ trước">‹</button><b id="pLabel"></b><button class="pg" type="button" id="next" aria-label="Kỳ sau">›</button></div>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="chart" id="chart"></div>
+    <div class="legend"><span><i></i>Đạt mục tiêu</span><span><i style="background:color-mix(in srgb,var(--sun) 45%,var(--track))"></i>Chưa đạt</span><span><i class="g"></i>Mục tiêu</span></div>
+    <p class="note" id="chartNote" style="margin-top:8px"></p>
+   </div>
+   <div class="card">
+    <h3 id="listTitle">Chi tiết</h3>
+    <div class="scroll"><table class="stack" id="listTbl"><thead></thead><tbody></tbody></table></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- HỒ SƠ -->
+ <section class="view" id="v-ho-so">
+  <form class="card" id="pform" novalidate>
+   <h2>Hồ sơ</h2>
+   <p>Điền 5 thông tin dưới đây để app lập chương trình đi bộ phù hợp.</p>
+   <label class="f">Tên gọi trong app <small>(không bắt buộc)</small><input class="inp" type="text" id="fName" maxlength="30" placeholder="Ví dụ: Mẹ Phương"></label>
+   <div class="two">
+    <label class="f">1. Tuổi<input class="inp" type="number" inputmode="numeric" id="fAge" min="50" max="100" placeholder="Ví dụ: 62"></label>
+    <fieldset><legend>2. Giới tính</legend><div class="seg"><label><input type="radio" name="g" value="nu"><span>Nữ</span></label><label><input type="radio" name="g" value="nam"><span>Nam</span></label></div></fieldset>
+    <label class="f">3. Cân nặng (kg)<input class="inp" type="number" inputmode="decimal" id="fW" min="30" max="200" step="0.1" placeholder="Ví dụ: 55"></label>
+    <label class="f">4. Chiều cao (cm)<input class="inp" type="number" inputmode="numeric" id="fH" min="120" max="210" placeholder="Ví dụ: 155"></label>
+   </div>
+   <p class="bmi" id="fBmi" aria-live="polite"></p>
+   <label class="f">5. Số bước trung bình mỗi ngày hiện nay<input class="inp" type="number" inputmode="numeric" id="fBase" min="0" max="40000" placeholder="Ví dụ: 3500"></label>
+   <fieldset><legend style="font-weight:400;color:var(--muted)">Không biết? Chọn mức gần đúng:</legend>
+    <div class="seg" id="lv">
+     <label><input type="radio" name="lv" value="it"><span>Ít đi lại</span></label>
+     <label><input type="radio" name="lv" value="tb"><span>Trung bình</span></label>
+     <label><input type="radio" name="lv" value="nd"><span>Năng động</span></label>
+    </div>
+   </fieldset>
+   <fieldset><legend>Có bệnh tim mạch, huyết áp, tiểu đường, đau khớp hoặc đang điều trị bệnh không?</legend>
+    <div class="seg"><label><input type="radio" name="hl" value="co"><span>Có</span></label><label><input type="radio" name="hl" value="khong"><span>Không</span></label></div>
+   </fieldset>
+   <p class="warn" id="fWarn" hidden>Nên hỏi ý kiến bác sĩ trước khi bắt đầu tập. App sẽ chọn lộ trình nhẹ nhàng hơn.</p>
+   <label class="f" id="restartWrap" hidden style="font-weight:400"><input type="checkbox" id="fRestart" style="width:22px;height:22px;vertical-align:-4px;margin-right:8px">Bắt đầu lại chương trình từ hôm nay</label>
+   <button class="btn full" type="submit" id="fSubmit">Lưu và lập chương trình</button>
+   <p class="err" id="fErr" role="alert"></p>
+  </form>
+  <div class="card">
+   <h3>Dữ liệu</h3>
+   <p class="note" id="storeNote"></p>
+   <div class="row">
+    <button class="btn ghost small" type="button" id="xDown">Tải file sao lưu</button>
+    <button class="btn ghost small" type="button" id="xCopy">Sao chép dữ liệu</button>
+    <label class="btn ghost small" style="cursor:pointer">Nhập từ file<input type="file" id="xFile" accept=".json,application/json" hidden></label>
+   </div>
+   <p class="msg" id="xMsg" role="status"></p>
+   <textarea id="xText" hidden readonly aria-label="Dữ liệu để sao chép"></textarea>
+   <div class="row" style="margin-top:14px">
+    <button class="btn ghost small" type="button" id="xClear">Xóa toàn bộ dữ liệu</button>
+    <span id="xConfirm" hidden class="row"><span>Xóa hẳn hồ sơ và nhật ký?</span><button class="btn danger small" type="button" id="xYes">Xóa hẳn</button><button class="btn ghost small" type="button" id="xNo">Thôi</button></span>
+   </div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <p class="disc">Ứng dụng chỉ để tham khảo, không thay thế tư vấn của bác sĩ.</p>
+ <p class="gift"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.4-4.5-9.4-9.1C1.1 8.3 3.4 4.5 7.1 4.5c2.1 0 3.6 1.1 4.9 3 1.3-1.9 2.8-3 4.9-3 3.7 0 6 3.8 4.5 7.4C19.4 16.5 12 21 12 21z" fill="currentColor"/></svg>Mike làm tặng Mẹ Phương</p>
+</footer>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ===== CẤU HÌNH (sửa các con số ở đây) ===== */
+const CFG={
+ weeks:12,                 // số tuần của chương trình
+ goal60:[6000,8000],       // khoảng mục tiêu bước/ngày cho người từ 60 tuổi
+ goal50:[8000,10000],      // khoảng mục tiêu cho người 50–59 tuổi
+ rate:0.10,                // tăng 10% mỗi tuần
+ rateGentle:0.07,          // lộ trình nhẹ: tăng 7% mỗi tuần
+ minBase:1000,             // điểm xuất phát thấp nhất
+ levels:{it:2500,tb:4500,nd:6500} // số bước ước lượng theo mức vận động
+};
+const TIPS=[
+ 'Khởi động 5 phút trước khi đi: xoay cổ chân, đầu gối, vai. Đi chậm 5 phút cuối để hạ nhịp tim.',
+ 'Chọn giày vừa chân, đế êm, có độ bám; mang tất cotton để tránh phồng chân.',
+ 'Đi vào giờ mát: sáng sớm hoặc chiều tối, tránh nắng gắt từ 10 đến 15 giờ.',
+ 'Uống một ly nước trước khi đi và mang theo nước nếu đi lâu.',
+ 'Đi với tốc độ vẫn nói chuyện được nhưng hơi khó hát: đó là mức vừa sức.',
+ 'Có thể chia nhỏ thành 2–3 lượt, mỗi lượt 10–15 phút, vẫn tính đủ cho cả ngày.',
+ 'Giữ lưng thẳng, mắt nhìn phía trước, vung tay tự nhiên theo nhịp bước.',
+ 'Rủ người thân hoặc hàng xóm đi cùng cho vui và an toàn hơn.',
+ 'Chọn đường bằng phẳng, đủ ánh sáng; cẩn thận bậc thềm và chỗ trơn trượt.',
+ 'Không đi khi quá đói hoặc vừa ăn no; nếu đi lâu, ăn nhẹ trước 30 phút.',
+ 'Luôn mang theo điện thoại và lưu sẵn số người thân để gọi khi cần.',
+ 'Sau khi đi, giãn nhẹ bắp chân và đùi, mỗi động tác giữ 15–20 giây.'
+];
+const DOW=['T2','T3','T4','T5','T6','T7','CN'];
+const DOWL=['Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy','Chủ Nhật'];
+const FEEL={khoe:'Khỏe',binh:'Bình thường',met:'Mệt'};
+
+/* ===== Ngày tháng ===== */
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{const a=s.split('-').map(Number);return new Date(a[0],a[1]-1,a[2])};
+const dn=s=>{const a=s.split('-').map(Number);return Math.round(Date.UTC(a[0],a[1]-1,a[2])/864e5)};
+const addDays=(s,n)=>{const d=parse(s);d.setDate(d.getDate()+n);return iso(d)};
+const today=()=>iso(new Date());
+const dowIdx=s=>(parse(s).getDay()+6)%7;
+const monday=s=>addDays(s,-dowIdx(s));
+const dm=s=>{const d=parse(s);return d.getDate()+'/'+(d.getMonth()+1)};
+const fmt=n=>Math.round(n).toLocaleString('vi-VN');
+const fmt1=n=>n.toLocaleString('vi-VN',{minimumFractionDigits:1,maximumFractionDigits:1});
+const kfmt=n=>n<=0?'–':n<1000?String(Math.round(n)):(n/1000).toLocaleString('vi-VN',{maximumFractionDigits:1})+'k';
+const isDate=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s);
+
+/* ===== Dữ liệu ===== */
+const KEY='dibo-me-phuong-v1';
+let S={profile:null,start:null,logs:{}};
+let P=null;
+function cleanProfile(p){
+ if(!p||typeof p!=='object')return null;
+ const n=x=>typeof x==='number'&&isFinite(x);
+ if(!n(p.age)||!n(p.w)||!n(p.h)||!n(p.base))return null;
+ if(p.g!=='nu'&&p.g!=='nam')return null;
+ return {name:typeof p.name==='string'?p.name.slice(0,30):'',age:p.age,g:p.g,w:p.w,h:p.h,base:p.base,health:p.health==='co'?'co':'khong'};
+}
+function norm(o){
+ const out={profile:null,start:null,logs:{}};
+ if(!o||typeof o!=='object')return out;
+ out.profile=cleanProfile(o.profile);
+ out.start=isDate(o.start)?o.start:(out.profile?today():null);
+ if(o.logs&&typeof o.logs==='object'){
+  for(const k of Object.keys(o.logs)){
+   const v=o.logs[k];
+   if(isDate(k)&&v&&typeof v.s==='number'&&isFinite(v.s)&&v.s>=0)out.logs[k]={s:Math.round(Math.min(v.s,100000)),f:FEEL[v.f]?v.f:''};
+  }
+ }
+ return out;
+}
+function loadLocal(){try{const t=localStorage.getItem(KEY);if(t)S=norm(JSON.parse(t))}catch(e){}}
+let dbRef=null,mode='local',writing=false,again=false,wt=null;
+function writeLocal(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function save(){writeLocal();if(dbRef){clearTimeout(wt);wt=setTimeout(flush,600)}}
+async function flush(){
+ if(!dbRef)return;
+ if(writing){again=true;return}
+ writing=true;
+ try{await dbRef.set(JSON.parse(JSON.stringify(S)))}
+ catch(e){
+  const c=e&&e.code;
+  if(c==='unavailable'){setTimeout(flush,1200+Math.random()*1200)}
+  else if(c==='quota_exceeded'){showX('Bộ nhớ đã đầy, chưa lưu được. Hãy tải file sao lưu.')}
+  else{dbRef=null;mode='local';renderStore()}
+ }
+ writing=false;
+ if(again){again=false;flush()}
+}
+async function connect(){
+ if(!(window.claude&&typeof window.claude.use==='function'))return;
+ try{
+  const db=await window.claude.use('db');const user=await window.claude.use('user');
+  if(!db||!user)return;
+  const id=await user.id();if(!id)return;
+  const ref=db.doc('data/users/'+id+'/state');
+  const snap=await Promise.race([ref.get(),new Promise((_,rej)=>setTimeout(()=>rej({code:'timeout'}),10000))]);
+  dbRef=ref;mode='cloud';
+  if(snap.exists){
+   const remote=norm(JSON.parse(JSON.stringify(snap.data()||{})));
+   const merged={profile:remote.profile||S.profile,start:remote.profile?remote.start:S.start,logs:Object.assign({},S.logs,remote.logs)};
+   const changed=JSON.stringify(merged)!==JSON.stringify(remote);
+   S=merged;writeLocal();refresh();
+   if(changed)flush();
+  }else if(S.profile||Object.keys(S.logs).length){flush()}
+  renderStore();
+ }catch(e){}
+}
+
+/* ===== Chương trình ===== */
+const bmiOf=p=>p.w/((p.h/100)**2);
+const bmiLabel=b=>b<18.5?'thiếu cân':b<23?'bình thường':b<25?'thừa cân':'béo phì';
+function makePlan(p){
+ const bmi=bmiOf(p);
+ const gentle=p.health==='co'||bmi>=25||p.age>=70;
+ const rng=p.age>=60?CFG.goal60:CFG.goal50;
+ let goal=gentle?rng[0]:Math.round((rng[0]+rng[1])/200)*100;
+ const base=Math.max(CFG.minBase,Math.round(p.base/100)*100);
+ const maintain=base>=goal;
+ if(maintain)goal=base;
+ const rate=gentle?CFG.rateGentle:CFG.rate;
+ return {bmi,gentle,rng,goal,base,rate,maintain};
+}
+const weekSteps=w=>Math.min(P.goal,Math.round(P.base*(1+P.rate)**(Math.min(w,200)-1)/100)*100);
+const weekDays=w=>w<=4?5:6;
+const weekMins=w=>P.gentle?Math.min(30,10+(w-1)*2):Math.min(40,15+(w-1)*2);
+const weekNo=d=>Math.max(1,Math.floor((dn(d)-dn(S.start))/7)+1);
+const goalFor=d=>P?weekSteps(weekNo(d)):0;
+const strideM=()=>S.profile.h*(S.profile.g==='nu'?0.413:0.415)/100;
+const kmOf=st=>st*strideM()/1000;
+const kcalOf=st=>kmOf(st)*S.profile.w*0.5;
+const stepsOn=d=>S.logs[d]?S.logs[d].s:0;
+const hit=d=>!!S.logs[d]&&S.logs[d].s>=goalFor(d);
+const callName=()=>(S.profile&&S.profile.name.trim())||'Mẹ';
+
+/* ===== Điều hướng ===== */
+const VIEWS=['hom-nay','chuong-trinh','tong-hop','ho-so'];
+function route(){
+ let h=location.hash.replace('#','');
+ if(!VIEWS.includes(h))h=S.profile?'hom-nay':'ho-so';
+ for(const v of VIEWS)$('#v-'+v).classList.toggle('on',v===h);
+ $$('.tab').forEach(t=>t.toggleAttribute('aria-current',t.dataset.v===h));
+ $$('.tab').forEach(t=>{if(t.dataset.v===h)t.setAttribute('aria-current','page')});
+ if(h==='tong-hop')renderSum();
+ if(h==='ho-so')fillProfile();
+}
+$$('.tab').forEach(t=>t.addEventListener('click',()=>{if(location.hash==='#'+t.dataset.v)route();else location.hash=t.dataset.v;window.scrollTo(0,0)}));
+window.addEventListener('hashchange',()=>{route();window.scrollTo(0,0)});
+
+/* ===== Hôm nay ===== */
+const RC=2*Math.PI*88;
+const rays=$('#rays');
+rays.innerHTML=Array.from({length:24},(_,i)=>{const a=(i/24)*2*Math.PI-Math.PI/2;const c=Math.cos(a),s=Math.sin(a);return `<line class="ray" x1="${(120+c*104).toFixed(1)}" y1="${(120+s*104).toFixed(1)}" x2="${(120+c*114).toFixed(1)}" y2="${(120+s*114).toFixed(1)}"/>`}).join('');
+$('#rprog').setAttribute('stroke-dasharray',RC.toFixed(1));
+function renderToday(){
+ if(!P)return;
+ const t=today(),st=stepsOn(t),g=goalFor(t),pct=g?st/g:0,n=callName();
+ $('#hello').textContent='Chào '+n;
+ $('#rSteps').textContent=fmt(st);
+ $('#rGoal').textContent='/ '+fmt(g)+' bước';
+ $('#rPct').textContent=Math.round(pct*100)+'% mục tiêu';
+ $('#rprog').setAttribute('stroke-dashoffset',(RC*(1-Math.min(1,pct))).toFixed(1));
+ const lit=Math.round(Math.min(1,pct)*24);
+ rays.querySelectorAll('.ray').forEach((r,i)=>r.classList.toggle('lit',i<lit));
+ $('#rKm').textContent=fmt1(kmOf(st));
+ $('#rKcal').textContent=fmt(kcalOf(st));
+ const w=weekNo(t);
+ $('#rWeek').textContent=w<=CFG.weeks?'Tuần '+w+'/'+CFG.weeks:'Giai đoạn duy trì';
+ let c;
+ if(!S.logs[t])c=n+' ơi, hôm nay mình đi '+fmt(g)+' bước nhé. Đi chậm rãi, thở đều.';
+ else if(pct<0.5)c='Khởi đầu tốt rồi! Thêm một vòng nhẹ nhàng nữa là được nửa chặng.';
+ else if(pct<1)c='Sắp tới đích rồi, chỉ còn '+fmt(g-st)+' bước thôi.';
+ else c='Tuyệt vời! '+n+' đã đạt mục tiêu hôm nay.';
+ if(S.logs[t]&&S.logs[t].f==='met')c+=' Nếu thấy mệt, ngày mai đi chậm hơn hoặc nghỉ một hôm.';
+ $('#cheer').textContent=c;
+ // tuần này
+ const m=monday(t);let html='',ok=0;
+ for(let i=0;i<7;i++){
+  const d=addDays(m,i),fut=dn(d)>dn(t),has=!!S.logs[d],h=hit(d);
+  if(h)ok++;
+  const cls=['dot',h?'done':has?'part':'',d===t?'today':'',fut?'future':''].join(' ');
+  html+=`<button type="button" class="${cls}" data-d="${d}" ${fut?'disabled':''} aria-label="${DOWL[i]} ${dm(d)}: ${has?fmt(S.logs[d].s)+' bước':'chưa ghi'}"><i>${h?'✓':has?kfmt(S.logs[d].s):''}</i><span>${DOW[i]}</span></button>`;
+ }
+ $('#week').innerHTML=html;
+ let sk=0,d=t;if(!hit(d))d=addDays(d,-1);while(hit(d)&&sk<3650){sk++;d=addDays(d,-1)}
+ $('#weekTxt').textContent='Đạt mục tiêu '+ok+'/'+weekDays(w)+' ngày tập của tuần này'+(sk>1?' · Chuỗi '+sk+' ngày liên tiếp':'')+'. Chạm vào một ngày để sửa số bước.';
+}
+$('#week').addEventListener('click',e=>{const b=e.target.closest('.dot');if(b&&!b.disabled)pickDate(b.dataset.d,true)});
+function pickDate(d,focus){
+ $('#eDate').value=d;loadEntry();
+ if(focus){$('#entry').scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>$('#eSteps').focus({preventScroll:true}),350)}
+}
+function loadEntry(){
+ const d=$('#eDate').value,l=S.logs[d];
+ $('#eSteps').value=l?l.s:'';
+ $$('input[name=feel]').forEach(r=>r.checked=!!l&&r.value===l.f);
+ $('#eDel').hidden=!l;$('#eMsg').textContent='';
+}
+$('#eDate').addEventListener('change',loadEntry);
+$('#entry').addEventListener('submit',e=>{
+ e.preventDefault();
+ const d=$('#eDate').value,v=$('#eSteps').value.trim(),st=Number(v);
+ if(!isDate(d)){$('#eMsg').textContent='Hãy chọn ngày.';return}
+ if(dn(d)>dn(today())){$('#eMsg').textContent='Chưa thể ghi cho ngày trong tương lai.';return}
+ if(v===''||!isFinite(st)||st<0||st>60000){$('#eMsg').textContent='Hãy nhập số bước từ 0 đến 60.000.';$('#eSteps').focus();return}
+ const f=($$('input[name=feel]').find(r=>r.checked)||{}).value||'';
+ S.logs[d]={s:Math.round(st),f};save();refresh();loadEntry();
+ const g=goalFor(d);
+ $('#eMsg').textContent='Đã lưu '+fmt(st)+' bước cho '+DOWL[dowIdx(d)]+' '+dm(d)+(st>=g?'. Đạt mục tiêu!':'.');
+});
+$('#eDel').addEventListener('click',()=>{const d=$('#eDate').value;delete S.logs[d];save();refresh();loadEntry();$('#eMsg').textContent='Đã xóa số bước ngày '+dm(d)+'.'});
+
+/* ===== Chương trình ===== */
+function renderPlan(){
+ if(!P)return;
+ const p=S.profile,n=callName(),t=today(),w=weekNo(t);
+ $('#pTitle').textContent='Chương trình '+CFG.weeks+' tuần của '+n;
+ $('#pSub').textContent='Bắt đầu từ '+DOWL[dowIdx(S.start)]+' '+dm(S.start)+'/'+parse(S.start).getFullYear()+'.';
+ const keys=[
+  ['Mục tiêu cuối',fmt(P.goal)+' bước/ngày'],
+  ['Điểm xuất phát',fmt(P.base)+' bước/ngày'],
+  ['Mức tăng',P.maintain?'Giữ vững mức hiện tại':'Khoảng '+Math.round(P.rate*100)+'% mỗi tuần'],
+  ['BMI',fmt1(P.bmi)+' – '+bmiLabel(P.bmi)]
+ ];
+ $('#pKeys').innerHTML=keys.map(k=>`<div class="stat"><span>${k[0]}</span><b style="font-size:22px;white-space:normal">${esc(k[1])}</b></div>`).join('');
+ const notes=[];
+ if(p.health==='co')notes.push('Vì có bệnh cần lưu ý, app chọn lộ trình nhẹ nhàng. Nên hỏi ý kiến bác sĩ trước khi tập.');
+ else if(P.gentle)notes.push('App chọn lộ trình nhẹ nhàng để tăng dần an toàn.');
+ if(P.maintain)notes.push('Mức đi bộ hiện tại đã tốt, chương trình giúp giữ đều mỗi ngày.');
+ const last=weekSteps(CFG.weeks);
+ if(!P.maintain&&last<P.goal)notes.push('Sau '+CFG.weeks+' tuần sẽ đạt khoảng '+fmt(last)+' bước/ngày; app tiếp tục tăng dần đến '+fmt(P.goal)+' bước.');
+ $('#pGentle').hidden=!notes.length;$('#pGentle').textContent=notes.join(' ');
+ const cw=Math.min(w,CFG.weeks);
+ $('#nowTitle').textContent=w<=CFG.weeks?'Tuần '+w+' (tuần này)':'Giai đoạn duy trì (tuần '+w+')';
+ const now=[['Bước mỗi ngày',fmt(weekSteps(w))],['Đi bộ có chủ đích',weekMins(w)+' phút/ngày'],['Số ngày tập',weekDays(w)+' ngày/tuần'],['Ngày nghỉ',(7-weekDays(w))+' ngày']];
+ $('#nowBox').innerHTML=now.map(k=>`<div class="stat"><span>${k[0]}</span><b style="font-size:22px">${k[1]}</b></div>`).join('');
+ $('#tip').textContent='Lời khuyên tuần này: '+TIPS[(cw-1)%TIPS.length];
+ let rows='';
+ for(let i=1;i<=CFG.weeks;i++)rows+=`<tr class="${i===w?'cur':''}"><td style="white-space:nowrap">Tuần ${i}</td><td class="n">${fmt(weekSteps(i))}</td><td class="n">${weekMins(i)}</td><td class="n">${weekDays(i)}</td></tr>`;
+ $('#planTbl tbody').innerHTML=rows;
+}
+
+/* ===== Tổng hợp ===== */
+let per='tuan',off=0;
+$('#period').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;per=b.dataset.p;off=0;$$('#period button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderSum()});
+$('#prev').addEventListener('click',()=>{off--;renderSum()});
+$('#next').addEventListener('click',()=>{if(off<0){off++;renderSum()}});
+function stat(l,v,s){return `<div class="stat"><span>${l}</span><b>${v}</b>${s?`<small>${s}</small>`:''}</div>`}
+function colHTML(o,max){
+ const h=Math.max(0,Math.min(100,o.v/max*100)),g=Math.min(100,o.g/max*100);
+ const tag=o.d?'button':'div';
+ return `<${tag} class="col ${o.ok?'ok':''} ${o.cur?'cur':''}" ${o.d?`type="button" data-d="${o.d}"`:''} aria-label="${esc(o.a)}"><span class="cv">${kfmt(o.v)}</span><span class="trk"><i class="bar" style="height:${h.toFixed(1)}%"></i>${o.g?`<i class="gl" style="bottom:${g.toFixed(1)}%"></i>`:''}</span><span class="cl">${o.l}</span></${tag}>`;
+}
+function renderSum(){
+ if(!P)return;
+ const t=today();
+ $('#next').disabled=off>=0;
+ if(per==='tuan'){
+  const m=addDays(monday(t),off*7),days=[];
+  for(let i=0;i<7;i++)days.push(addDays(m,i));
+  const past=days.filter(d=>dn(d)<=dn(t));
+  const ref=dn(days[6])<=dn(t)?days[6]:t;
+  const logged=past.filter(d=>S.logs[d]);
+  const tot=logged.reduce((a,d)=>a+S.logs[d].s,0);
+  const ok=logged.filter(hit).length;
+  $('#pLabel').textContent=off===0?'Tuần này':off===-1?'Tuần trước':dm(m)+' – '+dm(days[6]);
+  $('#stats').innerHTML=stat('Tổng số bước',fmt(tot),dm(m)+' – '+dm(days[6]))+stat('Trung bình mỗi ngày',fmt(logged.length?tot/logged.length:0),logged.length+' ngày có ghi')+stat('Ngày đạt mục tiêu',ok+'/'+weekDays(weekNo(ref)),'mục tiêu '+fmt(goalFor(ref))+' bước')+stat('Quãng đường',fmt1(kmOf(tot))+' km','ước tính');
+  const max=Math.max(1,...days.map(d=>Math.max(stepsOn(d),goalFor(d)*1.15)));
+  $('#chart').innerHTML=days.map((d,i)=>colHTML({v:stepsOn(d),g:goalFor(d),ok:hit(d),cur:d===t,l:DOW[i],d:dn(d)<=dn(t)?d:'',a:DOWL[i]+' '+dm(d)+': '+fmt(stepsOn(d))+' bước'},max)).join('');
+  $('#chartNote').textContent='Chạm vào một cột để sửa số bước ngày đó.';
+  $('#listTitle').textContent='Chi tiết từng ngày';
+  $('#listTbl thead').innerHTML='<tr><th>Ngày</th><th class="n">Số bước</th><th class="n">Mục tiêu</th><th>Kết quả</th><th>Cảm nhận</th></tr>';
+  $('#listTbl tbody').innerHTML=days.map((d,i)=>{const l=S.logs[d],fut=dn(d)>dn(t);return `<tr><td data-l="Ngày">${DOWL[i]} ${dm(d)}</td><td class="n" data-l="Số bước">${l?fmt(l.s):fut?'':'–'}</td><td class="n" data-l="Mục tiêu">${fmt(goalFor(d))}</td><td data-l="Kết quả">${l?(hit(d)?'<span class="tag ok">Đạt</span>':'<span class="tag">Chưa đạt</span>'):fut?'':'<span class="tag">Chưa ghi</span>'}</td><td data-l="Cảm nhận">${l&&l.f?FEEL[l.f]:''}</td></tr>`}).join('');
+ }else{
+  const now=new Date(),y0=now.getFullYear(),m0=now.getMonth()+off;
+  const first=new Date(y0,m0,1),y=first.getFullYear(),mo=first.getMonth();
+  const nd=new Date(y,mo+1,0).getDate();
+  const md=[];for(let i=1;i<=nd;i++)md.push(iso(new Date(y,mo,i)));
+  const sumMonth=list=>{const lg=list.filter(d=>S.logs[d]&&dn(d)<=dn(t));const tt=lg.reduce((a,d)=>a+S.logs[d].s,0);return {lg,tt,ok:lg.filter(hit).length}};
+  const cur=sumMonth(md);
+  const pf=new Date(y,mo-1,1),pn=new Date(y,mo,0).getDate(),pd=[];for(let i=1;i<=pn;i++)pd.push(iso(new Date(pf.getFullYear(),pf.getMonth(),i)));
+  const prev=sumMonth(pd);
+  let cmp='–';
+  let cmpSub='';if(prev.tt>0){const ch=Math.round((cur.tt-prev.tt)/prev.tt*100);cmp=(ch>=0?'+':'')+ch+'%';cmpSub='tổng số bước tháng '+(pf.getMonth()+1)}else{cmp='–';cmpSub='chưa có dữ liệu tháng trước'}
+  $('#pLabel').textContent='Tháng '+(mo+1)+'/'+y;
+  $('#stats').innerHTML=stat('Tổng số bước',fmt(cur.tt),cur.lg.length+' ngày có ghi')+stat('Trung bình mỗi ngày',fmt(cur.lg.length?cur.tt/cur.lg.length:0),'tính trên ngày có ghi')+stat('Ngày đạt mục tiêu',String(cur.ok),'trong tháng')+stat('Quãng đường',fmt1(kmOf(cur.tt))+' km','ước tính')+stat('So với tháng trước',cmp,cmpSub);
+  const weeks=[];let d=md[0];
+  while(dn(d)<=dn(md[nd-1])){const wk=[];let k=d;for(let i=0;i<7&&dn(k)<=dn(md[nd-1]);i++){wk.push(k);if(dowIdx(k)===6){k=addDays(k,1);break}k=addDays(k,1)}weeks.push(wk);d=k}
+  const ws=weeks.map(wk=>{const s=sumMonth(wk);return {wk,s,avg:s.lg.length?s.tt/s.lg.length:0,g:goalFor(wk[0])}});
+  const max=Math.max(1,...ws.map(o=>Math.max(o.avg,o.g*1.15)));
+  $('#chart').innerHTML=ws.map(o=>colHTML({v:o.avg,g:o.g,ok:o.avg>=o.g&&o.avg>0,cur:o.wk.includes(t),l:o.wk.length>1?parse(o.wk[0]).getDate()+'–'+parse(o.wk[o.wk.length-1]).getDate():String(parse(o.wk[0]).getDate()),d:'',a:'Ngày '+dm(o.wk[0])+' đến '+dm(o.wk[o.wk.length-1])+': trung bình '+fmt(o.avg)+' bước mỗi ngày'},max)).join('');
+  $('#chartNote').textContent='Mỗi cột là số bước trung bình mỗi ngày của một tuần (tính trên ngày có ghi).';
+  $('#listTitle').textContent='Chi tiết từng tuần';
+  $('#listTbl thead').innerHTML='<tr><th>Tuần</th><th class="n">Tổng số bước</th><th class="n">Trung bình/ngày</th><th class="n">Ngày đạt</th><th class="n">Quãng đường</th></tr>';
+  const span=wk=>wk.length>1?dm(wk[0])+' – '+dm(wk[wk.length-1]):dm(wk[0]);
+  $('#listTbl tbody').innerHTML=ws.map(o=>{const fut=dn(o.wk[0])>dn(t);return `<tr class="${o.wk.includes(t)?'cur':''}"><td data-l="Tuần">${span(o.wk)}</td><td class="n" data-l="Tổng số bước">${fut?'–':fmt(o.s.tt)}</td><td class="n" data-l="Trung bình/ngày">${fut?'–':fmt(o.avg)}</td><td class="n" data-l="Ngày đạt">${fut?'–':o.s.ok}</td><td class="n" data-l="Quãng đường">${fut?'–':fmt1(kmOf(o.s.tt))+' km'}</td></tr>`}).join('');
+ }
+}
+$('#chart').addEventListener('click',e=>{const b=e.target.closest('button.col');if(!b)return;location.hash='hom-nay';setTimeout(()=>pickDate(b.dataset.d,true),30)});
+
+/* ===== Hồ sơ ===== */
+const radioVal=n=>($$('input[name='+n+']').find(r=>r.checked)||{}).value||'';
+const setRadio=(n,v)=>$$('input[name='+n+']').forEach(r=>r.checked=r.value===v);
+function showBmi(){
+ const w=Number($('#fW').value),h=Number($('#fH').value);
+ $('#fBmi').textContent=(w>=30&&h>=120&&w<=200&&h<=210)?'BMI: '+fmt1(w/((h/100)**2))+' – '+bmiLabel(w/((h/100)**2))+' (theo chuẩn người châu Á)':'';
+}
+function fillProfile(){
+ const p=S.profile;
+ $('#restartWrap').hidden=!p;$('#fRestart').checked=false;$('#fErr').textContent='';
+ $('#fSubmit').textContent=p?'Lưu thay đổi':'Lưu và lập chương trình';
+ if(!p){showBmi();return}
+ $('#fName').value=p.name;$('#fAge').value=p.age;$('#fW').value=p.w;$('#fH').value=p.h;$('#fBase').value=p.base;
+ setRadio('g',p.g);setRadio('hl',p.health);setRadio('lv','');
+ $('#fWarn').hidden=p.health!=='co';showBmi();
+}
+$('#fW').addEventListener('input',showBmi);$('#fH').addEventListener('input',showBmi);
+$('#lv').addEventListener('change',e=>{if(e.target.name==='lv')$('#fBase').value=CFG.levels[e.target.value]});
+$('#fBase').addEventListener('input',()=>setRadio('lv',''));
+$$('input[name=hl]').forEach(r=>r.addEventListener('change',()=>$('#fWarn').hidden=radioVal('hl')!=='co'));
+$('#pform').addEventListener('submit',e=>{
+ e.preventDefault();
+ const age=Number($('#fAge').value),w=Number($('#fW').value),h=Number($('#fH').value),base=Number($('#fBase').value),g=radioVal('g'),hl=radioVal('hl');
+ const err=[];
+ if(!$('#fAge').value||!(age>=50&&age<=100))err.push('tuổi từ 50 đến 100');
+ if(!g)err.push('giới tính');
+ if(!$('#fW').value||!(w>=30&&w<=200))err.push('cân nặng từ 30 đến 200 kg');
+ if(!$('#fH').value||!(h>=120&&h<=210))err.push('chiều cao từ 120 đến 210 cm');
+ if($('#fBase').value===''||!(base>=0&&base<=40000))err.push('số bước hiện nay (hoặc chọn một mức)');
+ if(!hl)err.push('câu hỏi về bệnh');
+ if(err.length){$('#fErr').textContent='Hãy điền: '+err.join(', ')+'.';return}
+ const isNew=!S.profile;
+ S.profile={name:$('#fName').value.trim().slice(0,30),age:Math.round(age),g,w:Math.round(w*10)/10,h:Math.round(h),base:Math.round(base),health:hl};
+ if(isNew||$('#fRestart').checked||!S.start)S.start=today();
+ save();refresh();
+ location.hash='chuong-trinh';
+});
+
+/* ===== Sao lưu ===== */
+function showX(t){$('#xMsg').textContent=t}
+const dataText=()=>JSON.stringify(Object.assign({app:'di-bo-khoe',saved:new Date().toISOString()},S),null,1);
+$('#xDown').addEventListener('click',async()=>{
+ const name='di-bo-khoe-'+today()+'.json',txt=dataText();
+ let dl=null;
+ try{if(window.claude&&typeof window.claude.use==='function')dl=await window.claude.use('downloads')}catch(e){}
+ if(dl){
+  try{await dl.save({filename:name,data:txt});showX('Đã tải file sao lưu.')}
+  catch(e){showX(e&&e.code==='declined'?'Đã hủy tải file.':'Chưa tải được ở đây, hãy dùng nút Sao chép dữ liệu.')}
+  return;
+ }
+ try{const u=URL.createObjectURL(new Blob([txt],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);showX('Đã tạo file sao lưu. Nếu không thấy file, hãy dùng nút Sao chép dữ liệu.')}
+ catch(e){showX('Chưa tải được, hãy dùng nút Sao chép dữ liệu.')}
+});
+$('#xCopy').addEventListener('click',async()=>{
+ const txt=dataText();
+ try{await navigator.clipboard.writeText(txt);showX('Đã sao chép. Dán vào Zalo hoặc ghi chú để cất giữ.');$('#xText').hidden=true}
+ catch(e){const ta=$('#xText');ta.value=txt;ta.hidden=false;ta.focus();ta.select();showX('Hãy chọn toàn bộ chữ bên dưới và sao chép.')}
+});
+$('#xFile').addEventListener('change',e=>{
+ const f=e.target.files&&e.target.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{try{const o=norm(JSON.parse(r.result));if(!o.profile&&!Object.keys(o.logs).length)throw 0;S=o;save();refresh();showX('Đã nhập dữ liệu: '+Object.keys(o.logs).length+' ngày.')}catch(err){showX('File không đúng định dạng sao lưu của app.')}e.target.value=''};
+ r.readAsText(f);
+});
+$('#xClear').addEventListener('click',()=>{$('#xConfirm').hidden=false;$('#xClear').hidden=true});
+$('#xNo').addEventListener('click',()=>{$('#xConfirm').hidden=true;$('#xClear').hidden=false});
+$('#xYes').addEventListener('click',()=>{S={profile:null,start:null,logs:{}};save();$('#xConfirm').hidden=true;$('#xClear').hidden=false;['fName','fAge','fW','fH','fBase'].forEach(i=>$('#'+i).value='');['g','hl','lv'].forEach(n=>setRadio(n,''));$('#fWarn').hidden=true;refresh();fillProfile();showX('Đã xóa toàn bộ dữ liệu.')});
+function renderStore(){
+ $('#storeNote').textContent=mode==='cloud'?'Dữ liệu được lưu theo tài khoản của người đang dùng, mở lại trên máy khác vẫn còn. Nên tải file sao lưu mỗi tháng một lần.':'Dữ liệu được lưu ngay trên trình duyệt của máy này. Nên tải file sao lưu mỗi tháng một lần để phòng khi đổi máy hoặc xóa trình duyệt.';
+}
+
+/* ===== Khởi động ===== */
+function refresh(){
+ P=S.profile?makePlan(S.profile):null;
+ document.body.classList.toggle('noprof',!P);
+ $('#eDate').max=today();
+ if(!$('#eDate').value)$('#eDate').value=today();
+ renderToday();renderPlan();
+ if($('#v-tong-hop').classList.contains('on'))renderSum();
+}
+loadLocal();
+refresh();loadEntry();renderStore();route();
+connect();
+}
+</script>
+</body>
+</html>
